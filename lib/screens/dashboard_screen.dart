@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/room.dart';
+import '../services/auth_service.dart';
 import '../widgets/unit_painter.dart';
 
 /// The main dashboard screen that displays the real-time status of all rooms.
@@ -12,6 +13,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  final AuthService _authService = AuthService();
   String _searchQuery = '';
   String? _selectedStatus; // null means 'All'
 
@@ -21,6 +23,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
       appBar: AppBar(
         title: const Text('40-Bed Surgery Unit Dashboard'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              await _authService.signOut();
+              // AuthGate will handle navigation
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
