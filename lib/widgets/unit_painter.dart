@@ -92,6 +92,21 @@ class UnitPainter extends CustomPainter {
     );
     iconPainter.layout();
     iconPainter.paint(canvas, rect.bottomRight - Offset(iconPainter.width + 4, iconPainter.height + 4));
+
+    // Assigned Nurse
+    if (room.assignedNurse != null && room.assignedNurse!.isNotEmpty) {
+      final nursePainter = TextPainter(
+        text: TextSpan(
+          text: 'N: ${room.assignedNurse}',
+          style: const TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 11),
+        ),
+        textDirection: TextDirection.ltr,
+        maxLines: 1,
+        ellipsis: '...',
+      );
+      nursePainter.layout(maxWidth: rect.width - 8);
+      nursePainter.paint(canvas, rect.bottomLeft + const Offset(4, -nursePainter.height - 4));
+    }
   }
 
   @override

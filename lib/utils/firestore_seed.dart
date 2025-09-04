@@ -42,6 +42,10 @@ Future<void> main() async {
       'is_first_case': false,
       'is_ready': false,
       'prep_time_minutes': 0,
+      // Add new fields with null defaults
+      'assigned_nurse': null,
+      'procedure_type': null,
+      'surgeon_name': null,
     });
   }
 

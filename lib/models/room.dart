@@ -20,6 +20,11 @@ class Room {
   final bool isFirstCase;
   final int prepTimeMinutes;
 
+  // New fields for staff and procedure info
+  final String? assignedNurse;
+  final String? procedureType;
+  final String? surgeonName;
+
   Room({
     required this.id,
     required this.roomId,
@@ -35,6 +40,9 @@ class Room {
     required this.preopSeen,
     required this.isFirstCase,
     required this.prepTimeMinutes,
+    this.assignedNurse,
+    this.procedureType,
+    this.surgeonName,
   });
 
   /// Computes whether the room is ready for surgery.
@@ -59,6 +67,9 @@ class Room {
       preopSeen: data['preop_seen'] ?? false,
       isFirstCase: data['is_first_case'] ?? false,
       prepTimeMinutes: data['prep_time_minutes'] ?? 0,
+      assignedNurse: data['assigned_nurse'],
+      procedureType: data['procedure_type'],
+      surgeonName: data['surgeon_name'],
     );
   }
 
@@ -79,6 +90,9 @@ class Room {
       'is_first_case': isFirstCase,
       'is_ready': isReady, // Also write the computed property
       'prep_time_minutes': prepTimeMinutes,
+      'assigned_nurse': assignedNurse,
+      'procedure_type': procedureType,
+      'surgeon_name': surgeonName,
     };
   }
 
